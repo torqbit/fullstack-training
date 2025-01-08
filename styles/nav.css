@@ -27,7 +27,7 @@ nav {
     font-weight: 500;
 }
 
-.links ul {
+.links {
     display: flex;
     gap: 30px;
 }
