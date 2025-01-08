@@ -19,7 +19,7 @@ ul{
 a{
     text-decoration: none;
 }
-section{
+section, nav{
     font-size:14px;
     --container-width: 900px;
     --gap: 50px;
@@ -31,7 +31,7 @@ section{
 
 }
 @media screen and (max-width:430px){
-    section{
+    section, nav{
         --container-width:90vw;
         --gap:30px;
         --article-img-width:90vw;
