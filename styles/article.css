@@ -15,7 +15,7 @@
    grid-template-columns: auto auto;
    gap:var(--gap);
 }
-.work{
+.blog{
    width: auto;
    display:flex;
    flex-direction: column;
@@ -27,12 +27,12 @@
    position: relative;
    height:200px;
 }
-.work>.image img{
+.blog>.image img{
    width:var(--article-img-width);
    height: 200px;
    border-radius: 5px;
 }
-.work>.image>.date{
+.blog>.image>.date{
    display: flex;
    background-color: #ffffff7a;
    position:absolute;
@@ -41,26 +41,26 @@
    width: calc(var(--article-img-width) - 30px);
    justify-content: space-between;
 }
-.work>.image>.date p{
+.blog>.image>.date p{
    margin:0;
    font-size:12px;
 }
 .grid p{
    padding: 0 12px;
 }
-.grid>.work>p:last-of-type{
+.grid>.blog>p:last-of-type{
    font-size:13px;
    color:rgba(189, 212, 207, 0.87);
    margin-top: 0;
 }
-.Read{
+.article__link{
    display: flex;
    justify-items: center;
 }
-.Read p{
+.article__link p{
    font-size: 13px;
 }
-.Read svg{
+.article svg{
    margin:13px 7px;
    color:rgba(189, 212, 207, 0.87) ;
 }
