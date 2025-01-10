@@ -59,16 +59,13 @@
 }
 .article__link p{
    font-size: 13px;
+   margin: 10px 0;
 }
-.article svg{
-   margin:13px 7px;
+ svg{
+   margin:10px 5px;
    color:rgba(189, 212, 207, 0.87) ;
 }
 @media screen and (max-width:430px){
-   section{
-       --container-width:90vw;
-       --gap:30px;
-   }
    .grid{
        grid-template-columns: 1fr;
    }
