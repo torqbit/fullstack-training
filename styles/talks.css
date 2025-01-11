@@ -59,10 +59,10 @@
 
 }
 @media screen and (max-width:430px){
-    .talk{
+    .talks{
         margin:50px auto 0 auto;
     }
-    .skilss{
+    .talks__topic{
         display:flex;
         flex-direction: column;
     }
