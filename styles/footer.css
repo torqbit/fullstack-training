@@ -1,68 +1,68 @@
-.footer{
+footer{
     width:var(--container-width);
     margin: 70px auto 0 auto;
 }
-.footer hr{
+footer hr{
     margin:0;
     border-color:   #2d2d36b4;
     border-width: 1px;
 }
-.foot__text{
+.footer__text{
     display:flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.foot__text p{
+.footer__text p{
     font-size: 15px;
     color: rgba(189, 212, 207, 0.87)
 
 }
-.foot__img{
+.footer__img{
     display: none;
 }
-.foot__nav{
+.footer__nav{
     display: flex;
     gap:30px;
 }
 @media screen and (max-width:430px){
-    .footer{
+    footer{
         margin:35px auto 0 auto;
     }
-    .footer hr{
+    footer hr{
         margin-bottom: 8px;
     }
-    .foot__text {
+    .footer__text {
         justify-content:center;
     }
-    .foot__text p{
+    .footer__text p{
         font-size: 17px;
     }
    
-    .foot__nav{
+    .footer__nav{
        display:none;
     }
-    .foot__img {
+    .footer__img {
         display: flex;
         justify-content: space-evenly;
         justify-items: center;
         padding: 10px;
         background-color: #2b2b40;;
     }
-    .foot__link{
+    .footer__link{
         justify-content: center;
         justify-items: center;
     }
-    .foot__img>.foot__link p{
+    .footer__img>.footer__link p{
         margin: 0;
         font-size: 12px;
         color: #C0C2D6;
     }
-    .foot__img>.foot__link>i{
+    .footer__img>.footer__link>i{
         align-items: center;
         font-size: 22px;
         margin:0;
     }
-    .foot__img>.foot__link>i>svg{
+    .footer__img>.footer__link>i>svg{
         margin:0;
     }
 
