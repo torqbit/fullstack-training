@@ -1,16 +1,16 @@
-.talk{
+.talks{
     width:var(--container-width);
     margin: 50px auto;
 }
-.talk p{
+.talks p{
     color:white;
 }
-.talk hr{
+.talks hr{
     border-color:   #2d2d36b4;
     border-width: 1px;
     margin-bottom: 40px;
 }
-.skills{
+.talks__topic{
     display:flex;
     gap:var(--gap);
 }
@@ -33,13 +33,13 @@
     color: black;
     margin-left: 15px;
 }
-.language>#p{
+.language>#white{
     background-color: antiquewhite;
 }
-.language>#g{
+.language>#green{
     background-color:rgb(177, 233, 177) ;
 }
-.language>#b{
+.language>#blue{
     background-color: lightblue;
 }
 
