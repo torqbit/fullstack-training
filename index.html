@@ -20,10 +20,10 @@
     <nav class="head">
       <h1><b>JOHN</b> DOE</h1>
       <ul class="links">
-        <li><a href="#">About</a></li>
-        <li><a href="#">Articles</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Talks</a></li>
+        <li><a href="#1">About</a></li>
+        <li><a href="#2">Articles</a></li>
+        <li><a href="#3">Projects</a></li>
+        <li><a href="#4">Talks</a></li>
       </ul>
       <a href="/" class="icon">
         <img src="assets/phone.svg" />
@@ -32,7 +32,7 @@
     </nav>
   </header>
   <!--About section-->
-  <section class="about">
+  <section id="1" class="about">
     <div class="about__container">
       <div class="img__container">
         <img src="assets/uifaces-popular-image.jpg" />
@@ -43,7 +43,7 @@
       </h1>
     </div>
   </section>
-  <section class="article">
+  <section id="2" class="article">
     <p>Articles</p>
     <hr />
     <div class="grid">
@@ -142,7 +142,7 @@
       </div>
     </div>
   </section>
-  <section class="project">
+  <section id="3" class="project">
     <p>Projects</p>
     <hr />
     <div class="project__container">
@@ -189,7 +189,7 @@
     </div>
   </section>
 
-  <section class="talks">
+  <section id="4" class="talks">
     <p>Talks</p>
     <hr />
     <div class="talks__topic">
@@ -234,7 +234,7 @@
       </div>
     </div>
     <div class="footer__img">
-      <div class="footer__link">
+      <a href="#1" class="footer__link">
         <i>
           <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -243,8 +243,8 @@
           </svg>
         </i>
         <p>About</p>
-      </div>
-      <div class="footer__link">
+      </a>
+      <a href="#2" class="footer__link">
         <i>
           <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -256,8 +256,8 @@
           </svg>
         </i>
         <p>Articles</p>
-      </div>
-      <div class="footer__link">
+      </a>
+      <a href="#3" class="footer__link">
         <i>
           <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -266,8 +266,8 @@
           </svg>
         </i>
         <p>Projects</p>
-      </div>
-      <div class="footer__link">
+      </a>
+      <a href="#4" class="footer__link">
         <i>
           <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -279,7 +279,7 @@
           </svg>
         </i>
         <p>Talks</p>
-      </div>
+      </a>
     </div>
   </footer>
 </body>
