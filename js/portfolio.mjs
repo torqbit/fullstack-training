@@ -70,6 +70,20 @@ class PortfolioService {
    * Find the latest article
    */
   latestArticle() {}
+
+  /**
+   * (1)Function to return the article based on the link
+   * @param {*} link
+   */
+  getArticle(link) {
+    // to get the article
+    // analyticsService.push({'view', link, 'article'})
+  }
+
+  /**
+   * (4)Find the most viewed article
+   */
+  getMostViewedArticle() {}
 }
 
 const service = new PortfolioService([], [], []);
