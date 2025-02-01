@@ -26,6 +26,14 @@ export function handleSignin(form) {
   // if it fails, show the error message
 
   //if it succeeds, show the portfolio website (navigation and about section)
+
+  // Use UserProfileService get profile, articles, projects and talks
+  const articles = UserProfileService.getArticles(account);
+  createArticlesSection(articles);
+
+  // Add the about section
 }
+
+function createArticlesSection(articles) {}
 
 window.handleSignup = handleSignup;
