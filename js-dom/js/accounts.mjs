@@ -22,7 +22,7 @@ export class SignupRequest {
  */
 export class UserAccount {}
 
-export class AccountService {
+class AccountService {
   /**
    * Stores a map of user accounts
    * where the key is the email and value is the UserAccount object
@@ -39,6 +39,13 @@ export class AccountService {
    * @param {*} request of type SignupRequest
    */
   handleSignupRequest(request) {}
+
+  /**
+   * Authenticate using email and password.
+   * @param {*} email
+   * @param {*} password
+   */
+  handleSigninRequest(email, password) {}
 }
 //Create an empty Map for storing users
 export default new AccountService(new Map());

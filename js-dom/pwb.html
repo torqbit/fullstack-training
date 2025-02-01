@@ -7,10 +7,13 @@
     <script type="module" src="js/portfolio.mjs"></script>
   </head>
   <body>
-    <form>
-      <input type="text" placeholder="Don" name="name" />
-      <input type="text" placeholder="abc@mail.com" name="email" />
-      <button type="button" onClick="handleSignup(this.form)">Sign up</button>
-    </form>
+    <div id="signup-form">
+      <form>
+        <input type="text" placeholder="Don" name="name" />
+        <input type="text" placeholder="abc@mail.com" name="email" />
+        <button type="button" onClick="handleSignup(this.form)">Sign up</button>
+      </form>
+      <p id="user-error"></p>
+    </div>
   </body>
 </html>
