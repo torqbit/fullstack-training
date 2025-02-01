@@ -45,8 +45,8 @@ Let's set up a simple project that serves static HTML, CSS, and JavaScript files
 
 ```bash
 # Create a new directory and initialize npm
-mkdir my-web-project
-cd my-web-project
+mkdir web-project
+cd web-project
 npm init -y
 ```
 
@@ -62,7 +62,7 @@ npm install --save-dev http-server
 Create the following directory structure:
 
 ```
-my-web-project/
+web-project/
 ├── public/
 │   ├── js/
 │   │   └── main.js
