@@ -4,7 +4,7 @@ class ArticleStore {
    * @param {*} accountWithArticles
    */
   constructor(accountWithArticles) {
-    if (accountWithArticles && accountWithArticles.length > 0) {
+    if (accountWithArticles && accountWithArticles.size > 0) {
       // Iterate through each user account and their articles
       for (const [account, articles] of accountWithArticles) {
         if (Array.isArray(articles) && articles.length > 0) {
@@ -21,32 +21,29 @@ class ArticleStore {
    * @param {*} article
    */
   addArticle(account, article) {
-    for (let i=0; i < localStorage.length; i=i+1){
-      if (localStorage.key(i)==`articles-${account.email}`){
-        user= localStorage.getItem(localStorage.key(i))
-        object= JSON.parse(user)
-        object.push(article)
-        JSON.stringify(object)
-      }
-      else{
-        localStorage.setItem(`articles-${account.email}`,JSON.stringify(article))
-      }
+    //console.log('article',article)
+    if(localStorage.getItem(`articles-${account}`) == null){
+      localStorage.setItem(`articles-${account}`,JSON.stringify(article))
+    } 
+    else {
+      const articlesString= localStorage.getItem(`articles-${account}`)
+      const articlesArray= JSON.parse(articlesString)
+      articlesArray.push(article)
+      localStorage.setItem(`articles-${account}`,JSON.stringify(articlesArray))
     }
-  }
-
+    }
   /**
    * Add a method to get all articles for a user
    * @param {*} account
    * @returns
    */
   getArticles(account) {
-    for(let i=0; i<localStorage.length; i=i+1){
-      if (localStorage.key(i)==`articles-${account.email}`){
-       const articleString=localStorage.getItem(localStorage.key(i))
-       const articleArray=JSON.parse(articleString)
-        return articleArray
-      }
-    }
+    const articleString=localStorage.getItem(`articles-${account}`)
+    const articleArray=JSON.parse(articleString)
+    return articleArray
+  }
+  deleteArticles(account){
+    localStorage.removeItem(`articles-${account}`)
   }
 
   /**
@@ -91,5 +88,4 @@ class ArticleStore {
 }
 }
 }
-
 export default ArticleStore;
