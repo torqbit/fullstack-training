@@ -97,6 +97,7 @@ function getRememberedUser() {
 function forgetUser() {
   document.cookie =
     "rememberedUser=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+  document.cookie = "rememberedUser=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
   document.cookie = "authToken=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
 }
 
