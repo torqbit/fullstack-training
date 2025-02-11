@@ -28,7 +28,9 @@ function setLanguagePreference(lang) {
 // Get language preference
 function getLanguagePreference() {
   const cookies = document.cookie.split(";");
-  const langCookie = cookies.find((cookie) => cookie.trim().startsWith("userLang="));
+  const langCookie = cookies.find((cookie) =>
+    cookie.trim().startsWith("userLang=")
+  );
   return langCookie ? langCookie.split("=")[1] : "en";
 }
 
