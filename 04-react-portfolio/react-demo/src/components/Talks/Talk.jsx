@@ -6,7 +6,7 @@ export function Talks({title, talk}){
         <hr />
         <div className="talks__topic">
         {talk.map(talk=> 
-            <TalkClass  
+            <TalkCard 
             blogImg={talk.blogImg}
             language={talk.language}
             title={talk.title}
@@ -17,7 +17,7 @@ export function Talks({title, talk}){
     </section>
     )
 }
-const TalkClass=({blogImg, language, title, description})=>(
+const TalkCard=({blogImg, language, title, description})=>(
     <div className="language">
         <img src={blogImg} />
         <p id="white">{language}</p>

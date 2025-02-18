@@ -1,5 +1,5 @@
 import "./Nav.css"
-export function Nav({firstname, lastname, onClickHanlder, count, links, navlogo, content}){
+export function Nav({firstname, lastname, onClickHanlder, count, links, btnlogo, content}){
   
   
     return( 
@@ -7,11 +7,9 @@ export function Nav({firstname, lastname, onClickHanlder, count, links, navlogo,
           <nav className="head" onClick={onClickHanlder}>
             <FullName firstname={firstname} lastname={lastname} />
             <NavLinks links={links} />
-            <Contact logo={navlogo} content={content} />
-          
-        </nav>
-        <h3>{count}</h3>
-      </header>
+            <Contact logo={btnlogo} content={content} />
+          </nav>
+        </header>
     )
   }
 
@@ -24,7 +22,7 @@ const NavLinks = ({links}) => (
 </ul>)
 
 const Contact = ({logo, content}) => (
-  <a href="/" class="icon">
+  <a href="/" className="icon">
     <img src= {logo} />
     <p>{content}</p>
   </a>

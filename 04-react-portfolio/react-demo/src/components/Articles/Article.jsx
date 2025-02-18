@@ -1,12 +1,12 @@
 import "./Article.css"
-export function Articles({title,article}){
+export function Articles({title,articles}){
     return(
     <section id="2" className="article">
         <p>{title}</p>
         <hr />
         <div className="grid">
-        {article.map(article => 
-            <ArticleClass  
+        {articles.map(article => 
+            <ArticleCard
             blogImg={article.blogImg} 
             dateOfPublish={article.dateOfPublish} 
             category={article.category} 
@@ -21,7 +21,7 @@ export function Articles({title,article}){
     )
 }
     
-const ArticleClass= ({blogImg, dateOfPublish, category, title, description, readLink, linkLogo})=> (
+const ArticleCard= ({blogImg, dateOfPublish, category, title, description, readLink, linkLogo})=> (
     <div className="blog">
         <div className="image">
           <img src={blogImg}/>

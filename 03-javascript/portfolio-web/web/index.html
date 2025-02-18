@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="module" src="js/portfolio.mjs"></script>
+  <title>Form</title>
+</head>
+
+<body>
+  <div id="signupform">
+    <form>
+      <input type="text" placeholder="Don" name="name">
+      <input type="text" placeholder="abc@gmail.com" name="email">
+      <input type="password" placeholder="*******" name="password">
+      <button type="button" onclick="handleSignup(this.form)">SignUp</button>
+    </form>
+    <p id="user-error"></p>
+  </div>
+  <div id="signInform" style="display: none;">
+    <form>
+      <input type="text" placeholder="abc@gmail.com" name="email">
+      <input type="password" placeholder="*******" name="password">
+      <button type="button" onclick="handleSignIn(this.form)">SignIn</button>
+    </form>
+    <p id="error"></p>
+  </div>
+  <div id="article__section">
+  </div>
+  </div>
+  <div id="project__section">
+  </div>
+  </div>
+  <div id="talk__section">
+  </div>
+
+</body>
+
+</html>

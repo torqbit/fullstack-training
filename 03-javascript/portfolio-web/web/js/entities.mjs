@@ -5,13 +5,9 @@ class UserProfile {
     this.description = description;
     this.profileImg = profileImg;
   }
-
-  log() {
-    console.log(this.title);
-  }
 }
 
-class Article {
+export class Article {
   constructor(blogImg, dateOfPublish, category, title, description, link) {
     this.blogImg = blogImg;
     this.dateOfPublish = dateOfPublish;
@@ -22,6 +18,20 @@ class Article {
   }
 }
 
-class Project {}
+export class Project {
+  constructor(logo,title, description, link) {
+    this.logo = logo;
+    this.title = title;
+    this.description = description;
+    this.link = link;
+  }
+}
 
-class Talks {}
+export class Talk {
+  constructor(blogImg, language, title, description) {
+    this.blogImg = blogImg;
+    this.language = language;
+    this.title = title;
+    this.description = description;
+  }
+}

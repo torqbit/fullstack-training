@@ -1,12 +1,12 @@
 import "./Project.css"
-export function Projects({title, project}){
+export function Projects({title, projects}){
     return(
     <section id="3" className="project">
         <p>{title}</p>
         <hr />
         <div className="project__container">
-        {project.map(project => 
-            <ProjectClass  
+        {projects.map(project => 
+            <ProjectCard 
             logo={project.logo}
             title={project.title}
             description={project.description}
@@ -18,7 +18,7 @@ export function Projects({title, project}){
     </section>
     )
 }
-const ProjectClass=({logo,title, description, link, arrow})=>(
+const ProjectCard=({logo,title, description, link, arrow})=>(
     <div className="content">
         <img id="yellow" src={logo} />
         <div className="project__description">
