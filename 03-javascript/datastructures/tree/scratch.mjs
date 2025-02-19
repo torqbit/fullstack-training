@@ -46,7 +46,7 @@ function findLeafNodes(node, arr=[]){
     if (node === null){
         return arr
     }
-    if (!node.left && !node.right){
+    if (node.left=== null && node.right=== null){
         arr.push(node.name)
     }
         
