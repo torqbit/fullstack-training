@@ -18,15 +18,41 @@ class TreeNode {
   parent1.right = child2; 
   parent2.left = child3; 
   
-  function printFamilyTree(node) {
+function getTreeHeight(node) {
     if (node === null){
         return 0
     }
     else{
-    const leftheight= printFamilyTree(node.left);
-    const rightheight= printFamilyTree(node.right);
+    const leftheight= getTreeHeight(node.left);
+    const rightheight= getTreeHeight(node.right);
     return 1 + Math.max(leftheight, rightheight)
-  }
-  }
-  
-  console.log(printFamilyTree(grandparent));
+    }
+}
+console.log(getTreeHeight(grandparent));
+
+function countNodes(node){
+    if (node === null){
+        return 0
+    }
+    else{
+    const leftcount = countNodes(node.left);
+    const rightcount= countNodes(node.right);
+    return 1+ leftcount + rightcount
+    }
+}
+console.log(countNodes(grandparent))
+
+function findLeafNodes(node, arr=[]){
+    if (node === null){
+        return arr
+    }
+    if (!node.left && !node.right){
+        arr.push(node.name)
+    }
+        
+    findLeafNodes(node.left, arr)
+    findLeafNodes(node.right, arr)
+    return arr
+}
+
+console.log(findLeafNodes(grandparent))
