@@ -1,6 +1,6 @@
 import "./Nav.css"
-export function Nav({firstname, lastname, onClickHanlder, count, links, btnlogo, content}){
-  
+export function Nav({firstname, lastname, onClickHanlder, links, btnlogo, content}){
+
   
     return( 
         <header>
