@@ -27,10 +27,12 @@ export function handleSignup(form) {
 }
 const article1= new Article('img','20thjan','meeting','hsaah','one','readpost')
 const article2= new Article('imgBlog','20thfeb','meeting','hsaah','two','blogpost')
+
 const project1= new Project('webby','about webby','how webby is useful...','nexon.io')
 const project2= new Project('netkool','aboutNetkool','how netkool is useful...','nexon.ion')
 const talk1= new Talk('javascript-img','javascript','aboutjavascript','how to learn...')
 const talk2= new Talk('python-img', 'python','aboutPython','how we can use pyhthon in our....')
+
 /**
  * Write a function to handle Signin request as per the design
 */
@@ -51,6 +53,10 @@ export function handleSignIn(form){
     createArticlesSection(articles)
     createProjectSection(projects)
     createTalkSection(talks)
+    userprofile.addArticle(account,article1)
+    userprofile.addArticle(account,article2)
+    const articles = userprofile.getArticles(account);
+    createArticlesSection(articles)
   }
   else{
     const error= document.getElementById('error');
@@ -81,6 +87,7 @@ function createArticlesSection(articles) {
         </p>
         </div>
      `)
+
     articleSection.innerHTML += articlesHTML.join('')
 }
 function createProjectSection(projects){
@@ -118,7 +125,9 @@ function createTalkSection(talks){
       </div>
      `)
     talkSection.innerHTML += talksHTML.join('')
-  
+
+    articleSection.innerHTML += articlesHTML.join('')
+
 }
 
 

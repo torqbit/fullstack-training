@@ -28,7 +28,9 @@ function setLanguagePreference(lang) {
 // Get language preference
 function getLanguagePreference() {
   const cookies = document.cookie.split(";");
-  const langCookie = cookies.find((cookie) => cookie.trim().startsWith("userLang="));
+  const langCookie = cookies.find((cookie) =>
+    cookie.trim().startsWith("userLang=")
+  );
   return langCookie ? langCookie.split("=")[1] : "en";
 }
 
@@ -93,6 +95,8 @@ function getRememberedUser() {
 
 // Clear remembered user
 function forgetUser() {
+  document.cookie =
+    "rememberedUser=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
   document.cookie = "rememberedUser=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
   document.cookie = "authToken=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
 }

@@ -21,18 +21,17 @@ class ArticleStore {
    * @param {*} article
    */
   addArticle(account, article) {
-    //console.log('article',article)
-    console.log(account)
-    if(localStorage.getItem(`articles-${account.email}`) == null){
-      localStorage.setItem(`articles-${account.email}`,JSON.stringify([article]))
+
+    if(localStorage.getItem(`articles-${account}`) == null){
+      localStorage.setItem(`articles-${account}`,JSON.stringify(article))
     } 
     else {
-      const articlesString= localStorage.getItem(`articles-${account.email}`)
+      const articlesString= localStorage.getItem(`articles-${account}`)
       const articlesArray= JSON.parse(articlesString)
       articlesArray.push(article)
-      localStorage.setItem(`articles-${account.email}`,JSON.stringify(articlesArray))
+      localStorage.setItem(`articles-${account}`,JSON.stringify(articlesArray))
     }
-    }
+  }
   /**
    * Add a method to get all articles for a user
    * @param {*} account
