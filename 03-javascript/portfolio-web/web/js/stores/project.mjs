@@ -10,6 +10,12 @@ class ProjectStore {
     }
     addProject(account, project) {
       if(localStorage.getItem(`projects-${account}`) == null){
+
+        localStorage.setItem(`projects-${account}`,JSON.stringify([project]))
+      } 
+      else {
+        const projectsString= localStorage.getItem(`projects-${account}`)
+        const projectsArray = JSON.parse(projectsString);
         localStorage.setItem(`projects-${account}`,JSON.stringify(project))
       } 
       else {
@@ -29,4 +35,3 @@ class ProjectStore {
     }
 }
 export default ProjectStore;
-  

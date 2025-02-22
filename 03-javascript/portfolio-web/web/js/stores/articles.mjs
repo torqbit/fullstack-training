@@ -9,7 +9,7 @@ class ArticleStore {
       for (const [account, articles] of accountWithArticles) {
         if (Array.isArray(articles) && articles.length > 0) {
           // Store articles array in localStorage with user email as key
-          localStorage.setItem(`articles-${account.email}`, JSON.stringify(articles));
+          localStorage.setItem(`articles-${account}`, JSON.stringify(articles));
         }
       }
     }
@@ -21,7 +21,7 @@ class ArticleStore {
    * @param {*} article
    */
   addArticle(account, article) {
-    //console.log('article',article)
+
     if(localStorage.getItem(`articles-${account}`) == null){
       localStorage.setItem(`articles-${account}`,JSON.stringify(article))
     } 
@@ -31,14 +31,14 @@ class ArticleStore {
       articlesArray.push(article)
       localStorage.setItem(`articles-${account}`,JSON.stringify(articlesArray))
     }
-    }
+  }
   /**
    * Add a method to get all articles for a user
    * @param {*} account
    * @returns
    */
   getArticles(account) {
-    const articleString=localStorage.getItem(`articles-${account}`)
+    const articleString=localStorage.getItem(`articles-${account.email}`)
     const articleArray=JSON.parse(articleString)
     return articleArray
   }

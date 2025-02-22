@@ -1,34 +1,66 @@
+import { Stack } from "../stack/stack.mjs";
 // Queue class for basic queue operations
-class Queue {
+export class Queue {
   constructor() {
     this.items = [];
   }
 
   enqueue(element) {
-    // Implement enqueue operation
+    this.items.push(element)
   }
 
   dequeue() {
-    // Implement dequeue operation
+    return this.items.shift()
   }
 
   peek() {
-    // Implement peek operation
+    if (this.items.length != 0){
+     return this.items[0]
+    }
+    else{
+      return 'Queue is empty'
+    }
   }
 
   isEmpty() {
-    // Implement isEmpty operation
+    if (this.items.length == 0){
+      return true
+    }
+    else{
+      return false
+    }
   }
 }
 
 // Function to reverse a queue
-function reverseQueue(queue) {
-  // Implement reverseQueue function
+export function reverseQueue(queue) {
+  const stack = new Stack();
+  const obj = new Queue()
+  for(let i in queue){
+    obj.enqueue(queue[i])
+  }
+  while (!obj.isEmpty()) {
+    stack.push(obj.dequeue());
+  }
+  const reversed = [];
+  while (!stack.isEmpty()) {
+    reversed.push(stack.pop());
+  }
+  return reversed;
 }
-
 // Function to check if a string is a palindrome using a queue
-function isPalindrome(input) {
-  // Implement isPalindrome function
+export function isPalindrome(input) {
+  const strSplit = [...input]
+  console.log(typeof(strSplit))
+  console.log(typeof(reverseQueue(input)))
+  console.log(strSplit)
+  console.log(reverseQueue(input))
+  if (strSplit == reverseQueue(input)){
+    return 'it is a palindrone'
+  }
+  else{
+    return 'it is not a palindrone'
+  }
 }
 
 // CircularQueue class for implementing a circular queue
@@ -67,10 +99,3 @@ function simulateQueue(customers, serviceTime) {
 }
 
 // Exporting the classes and functions for use
-export default {
-  Queue,
-  reverseQueue,
-  isPalindrome,
-  CircularQueue,
-  simulateQueue,
-};
