@@ -1,3 +1,4 @@
+import {Queue} from '../queue/queue.mjs'
 class TreeNode {
     constructor(name) {
       this.name = name;
@@ -56,3 +57,42 @@ function findLeafNodes(node, arr=[]){
 }
 
 console.log(findLeafNodes(grandparent))
+
+function levelOrderTraversal(node){
+    const queue = new Queue()
+    queue.enqueue(node)
+    queue.enqueue(null)
+
+    while (!queue.isEmpty()){
+        const temp = queue.peek()
+        queue.dequeue()
+        if (temp==null){
+           console.log('\n')
+           if (!queue.isEmpty()){
+            queue.enqueue(null)
+           }
+        }
+        else{
+            console.log(temp.name)
+            if (temp.left){
+                queue.enqueue(temp.left)
+            }
+            if (temp.right){
+                queue.enqueue(temp.right)
+            }
+        }
+    }
+}
+console.log(levelOrderTraversal(grandparent))
+
+function mirrorTree(node){
+    if (node == null){
+        return
+    }
+    node.left, node.right = node.right, node.left
+
+    mirrorTree(node.left)
+    mirrorTree(node.right)
+}
+
+console.log(mirrorTree(grandparent))
