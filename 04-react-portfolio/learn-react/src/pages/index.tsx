@@ -1,40 +1,55 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from '../styles/signUp.module.css'
+import { About } from "./components/About/About";
 
-const Signup = () => {
-    const [formData, setFormData] = useState({ name: "", email: "", password: "" });
-    const router = useRouter();
+type UserProfile= {
+    name : string;
+    title : string;
+    description: string;
+}
+const getUserProfile=(email: string)=>{
+    const user: UserProfile= {name:'aisha', title:'fullstack-dev', description:'learning frontend' }
+    return user
+}
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!formData.name || !formData.email || !formData.password) {
-            alert("Please fill all fields");
-            return;
+
+const HomePage =()=>{
+    const [userProfile, setUserProfile]= useState<UserProfile>();
+    const getCookie=(name: string)=> {
+        const cookies = document.cookie.split(";");
+        const cookie = cookies.find((c) => c.trim().startsWith(name + "="));
+        return cookie ? cookie.split("=")[1] : null;
+      }
+      const router= useRouter()
+      
+    const getRememberedUser =()=> {
+        const userEmail = getCookie("email");
+        
+        if (userEmail) {
+            setUserProfile({...userProfile, ...getUserProfile(userEmail)})
         }
-        localStorage.setItem("user", JSON.stringify(formData));
-        alert("Signup Successful! Please sign in.");
-        router.push("/signin"); // Redirect to Signin page
-    };
+        else{
+            return null
+        }
 
-    return (
-      <div className={styles.body}>
-        <div className={styles.container}>
-            <img src='./'></img>
-            <h5>Welcome to Torqbit</h5>
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="name" placeholder="Enter your Name" value={formData.name} onChange={handleChange} required />
-                <input type="email" name="email" placeholder="Enter your Email" value={formData.email} onChange={handleChange} required />
-                <input type="password" name="password" placeholder="Enter your Password" value={formData.password} onChange={handleChange} required />
-                <button type="submit">Signup with Email</button>
-            </form>
+      }
+
+    useEffect(() =>{
+        const user =  getRememberedUser()
+        if (!user){
+            router.push('/signUp')
+        }
+        
+    }, []);
+
+    return(
+        <div>
+            {userProfile && 
+            <About img={userProfile.title} introduction={userProfile.description} name={userProfile.name}/>}
         </div>
-      </div>
-    );
+        )
 };
+export default HomePage
 
-export default Signup;

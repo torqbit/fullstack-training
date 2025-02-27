@@ -1,12 +1,13 @@
 import { Stack } from "../stack/stack.mjs";
 // Queue class for basic queue operations
+
 export class Queue {
   constructor() {
     this.items = [];
   }
 
   enqueue(element) {
-    this.items.push(element)
+    return this.items.push(element)
   }
 
   dequeue() {

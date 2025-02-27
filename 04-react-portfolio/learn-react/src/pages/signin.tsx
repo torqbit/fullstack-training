@@ -1,36 +1,62 @@
-import { useState } from "react";
+import {useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from '../styles/signIn.module.css'
-export default function Signin() {
-  const [formData, setFormData] = useState({ email: "", password: "" });
-  const router = useRouter();
+import accountsService, { Response, UserAccount } from "@/pages/services/Account"
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+type FormState = {
+  email: string;
+  password: string;
+  response?: Response;
+};
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+const Signin= () => {
+  const [btnActive, setbtnActive] = useState(false)
+  const router = useRouter(); 
+  const [signinForm, setSignInForm] = useState<FormState>({
+    email: "",
+    password: ""
+  });
+  useEffect(() => {
+    if (signinForm.email !== "" && signinForm.password !== ""){
+        setbtnActive(true)
+    }
+    if (signinForm.email === "" &&  signinForm.password === ""){
+        setbtnActive(false)
+    }
+  },[signinForm])
 
-    if (storedUser.email === formData.email && storedUser.password === formData.password) {
-      localStorage.setItem("isAuthenticated", "true"); // Mark user as logged in
-      router.push("/portfolio"); // Redirect to first page
-    } else {
-      alert("Invalid credentials!");
+  const handleSignin = () => {
+    const user = new UserAccount(
+      signinForm.email,
+      signinForm.password
+    );
+    const signinResponse = accountsService.handleSignInRequest(signinForm.email, signinForm.password);
+    setSignInForm({ ...signinForm, response: signinResponse });
+    if (signinResponse.success) {
+      accountsService.saveUserCookie(user)
     }
   };
 
   return (
     <div className={styles.body}>
       <div className={styles.container}>
-        <img src='./'></img>
+        <img src='./torqbit.png'></img>
         <h5>Welcome back to Torqbit</h5>
-          <form onSubmit={handleSubmit}>
-            <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
-            <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
-            <button type="submit">Login with Email</button>
-          </form>
+        {signinForm.response && signinForm.response.success && (
+          <p>{signinForm.response.message}</p>
+        )}
+
+        {signinForm.response && !signinForm.response.success && (
+          <p style={{ color: "red" }}>{signinForm.response.message}</p>
+        )}
+        <form onSubmit={Signin}>
+            <input type="email" name="email" placeholder="Email" onChange={(e:any)=>setSignInForm({...signinForm,email: e.currentTarget.value})} required />
+            <input type="password" name="password" placeholder="Password" onChange={(e:any)=>setSignInForm({...signinForm, password:e.currentTarget.value})} required />
+            <button disabled ={!btnActive} className={`${btnActive ? 
+            styles.btn__active : styles.btn__inactive}`} type="submit" onClick={(e: any) => handleSignin()}>
+              Login with Email
+              </button>
+        </form>
       </div>
     </div>
   );
