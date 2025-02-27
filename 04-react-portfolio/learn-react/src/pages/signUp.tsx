@@ -14,9 +14,9 @@ const Signup = () => {
   const [btnActive, setbtnActive] = useState(false)
   const router = useRouter();
   const [signupForm, setSignUpForm] = useState<FormState>({
-    name: "aisha",
-    email: "aisha@mail.com",
-    password: "123",
+    name: "",
+    email: "",
+    password: "",
   });
   useEffect(() => {
     if (signupForm.email !== "" && signupForm.name !== "" && signupForm.password !== ""){

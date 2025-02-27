@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from '../styles/signUp.module.css'
+import { About } from "./components/About/About";
 
 type UserProfile= {
     name : string;
@@ -8,11 +9,11 @@ type UserProfile= {
     description: string;
 }
 const getUserProfile=(email: string)=>{
-    const user= {email:{name:'aisha', title:'fullstack-dev', description:'learning frontend' }}
+    const user: UserProfile= {name:'aisha', title:'fullstack-dev', description:'learning frontend' }
     return user
 }
 
-const router= useRouter()
+
 
 const HomePage =()=>{
     const [userProfile, setUserProfile]= useState<UserProfile>();
@@ -21,15 +22,18 @@ const HomePage =()=>{
         const cookie = cookies.find((c) => c.trim().startsWith(name + "="));
         return cookie ? cookie.split("=")[1] : null;
       }
+      const router= useRouter()
       
     const getRememberedUser =()=> {
-        const username = getCookie("saveUserCookie");
-      
-        if (username) {
-            setUserProfile({...userProfile, getUserProfile })
-          
+        const userEmail = getCookie("email");
+        
+        if (userEmail) {
+            setUserProfile({...userProfile, ...getUserProfile(userEmail)})
         }
-        return null;
+        else{
+            return null
+        }
+
       }
 
     useEffect(() =>{
@@ -37,11 +41,15 @@ const HomePage =()=>{
         if (!user){
             router.push('/signUp')
         }
+        
     }, []);
+
     return(
         <div>
-            <About img={"/images/uifaces-popular-image.jpg"} introduction="I am a FullStack-Developer" name= "Aisha" />
+            {userProfile && 
+            <About img={userProfile.title} introduction={userProfile.description} name={userProfile.name}/>}
         </div>
-    } 
-
+        )
 };
+export default HomePage
+
