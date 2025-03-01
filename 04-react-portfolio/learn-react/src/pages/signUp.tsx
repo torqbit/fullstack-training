@@ -28,6 +28,7 @@ const Signup = () => {
   },[signupForm])
 
   const handleSignup = () => {
+    console.log("handle sign up")
     const signupRequest = new SignupRequest(
       signupForm.name,
       signupForm.email,
@@ -36,6 +37,7 @@ const Signup = () => {
     const signupResponse = accountsService.handleSignupRequest(signupRequest);
     setSignUpForm({ ...signupForm, response: signupResponse });
     if (signupResponse.success) {
+      console.log(signupResponse);
       router.push(`/signin`);
     }
   };
@@ -79,7 +81,7 @@ const Signup = () => {
                 setSignUpForm({...signupForm, password: e.currentTarget.value})}
             required/>
           <button disabled ={!btnActive} className={`${btnActive ? 
-            styles.btn__active : styles.btn__inactive}`} type="submit" onClick={(e: any) => handleSignup()}>
+            styles.btn__active : styles.btn__inactive}`} type="button"  onClick={(e: any) => handleSignup()}>
             Signup with Email
           </button>
         </form>
