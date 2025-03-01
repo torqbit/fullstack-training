@@ -86,7 +86,7 @@ class AccountService {
    * @param {*} email
    * @param {*} password
    * @returns
-   */
+   */ 
   handleSignInRequest(email: string, password: string) {
     if (
       this.accounts.has(email) &&

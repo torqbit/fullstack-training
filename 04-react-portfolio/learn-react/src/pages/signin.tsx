@@ -53,7 +53,7 @@ const Signin= () => {
             <input type="email" name="email" placeholder="Email" onChange={(e:any)=>setSignInForm({...signinForm,email: e.currentTarget.value})} required />
             <input type="password" name="password" placeholder="Password" onChange={(e:any)=>setSignInForm({...signinForm, password:e.currentTarget.value})} required />
             <button disabled ={!btnActive} className={`${btnActive ? 
-            styles.btn__active : styles.btn__inactive}`} type="submit" onClick={(e: any) => handleSignin()}>
+            styles.btn__active : styles.btn__inactive}`} type="button" onClick={(e: any) => handleSignin()}>
               Login with Email
               </button>
         </form>
@@ -61,3 +61,4 @@ const Signin= () => {
     </div>
   );
 }
+export default Signin;

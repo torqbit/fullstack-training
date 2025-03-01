@@ -29,6 +29,7 @@ const HomePage =()=>{
         
         if (userEmail) {
             setUserProfile({...userProfile, ...getUserProfile(userEmail)})
+            return userEmail;
         }
         else{
             return null
@@ -37,9 +38,10 @@ const HomePage =()=>{
       }
 
     useEffect(() =>{
-        const user =  getRememberedUser()
+        const user =  getRememberedUser();
+        console.log(user)
         if (!user){
-            router.push('/signUp')
+            router.push('/signup')
         }
         
     }, []);
