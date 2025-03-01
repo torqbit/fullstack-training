@@ -16,7 +16,7 @@ React Context provides a way to pass data through the component tree without hav
 
 ### 1. Creating a Context
 
-```jsx
+```tsx
 // UserContext.ts
 import { createContext } from "react";
 
@@ -29,7 +29,7 @@ interface UserContextType {
   user: User | null;
 }
 
-const UserContext = createContext < UserContextType > { user: null };
+const UserContext = createContext<UserContextType>({ user: null });
 export default UserContext;
 ```
 
@@ -61,24 +61,27 @@ export default App;
 
 ```tsx
 // MainContent.tsx
-import { FC } from "react";
+import { FC, useContext } from "react";
 import UserContext from "./contexts/UserContext";
-import { User } from "./types/user";
 
-const App: FC = () => {
-  const user: User = {
-    name: "John Doe",
-    role: "admin",
-  };
+const MainContent: FC = () => {
+  const { user } = useContext(UserContext);
 
   return (
-    <UserContext.Provider value={{ user }}>
-      <MainContent />
-    </UserContext.Provider>
+    <div>
+      {user ? (
+        <div>
+          <h1>Welcome, {user.name}!</h1>
+          <p>Role: {user.role}</p>
+        </div>
+      ) : (
+        <p>Please log in</p>
+      )}
+    </div>
   );
 };
 
-export default App;
+export default MainContent;
 ```
 
 ## Example: Theme Context with TypeScript
