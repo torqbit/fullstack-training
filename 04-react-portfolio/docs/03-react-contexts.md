@@ -115,11 +115,7 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 };
 ```
 
@@ -166,11 +162,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     setUser(null);
   };
 
-  return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ user, login, logout }}>{children}</AuthContext.Provider>;
 };
 ```
 
@@ -201,10 +193,203 @@ interface LanguageProviderProps {
 export const LanguageProvider: FC<LanguageProviderProps> = ({ children }) => {
   const [language, setLanguage] = useState<Language>("en");
 
+  return <LanguageContext.Provider value={{ language, setLanguage }}>{children}</LanguageContext.Provider>;
+};
+```
+
+## Using useReducer with Context
+
+Combining `useReducer` with Context provides a more robust state management solution, especially for complex state logic. Here's how to enhance our User context example:
+
+### 1. Define Action Types and State
+
+```tsx
+// types/userTypes.ts
+export interface User {
+  name: string;
+  role: string;
+}
+
+export interface UserState {
+  user: User | null;
+  isLoading: boolean;
+  error: string | null;
+}
+
+export type UserAction =
+  | { type: "LOGIN_START" }
+  | { type: "LOGIN_SUCCESS"; payload: User }
+  | { type: "LOGIN_ERROR"; payload: string }
+  | { type: "LOGOUT" };
+```
+
+## 2. Create Reducer
+
+```tsx
+// reducers/userReducer.ts
+import { UserState, UserAction } from "../types/userTypes";
+
+export const userReducer = (state: UserState, action: UserAction): UserState => {
+  switch (action.type) {
+    case "LOGIN_START":
+      return {
+        ...state,
+        isLoading: true,
+        error: null,
+      };
+    case "LOGIN_SUCCESS":
+      return {
+        user: action.payload,
+        isLoading: false,
+        error: null,
+      };
+    case "LOGIN_ERROR":
+      return {
+        user: null,
+        isLoading: false,
+        error: action.payload,
+      };
+    case "LOGOUT":
+      return {
+        user: null,
+        isLoading: false,
+        error: null,
+      };
+    default:
+      return state;
+  }
+};
+```
+
+## 3. Create Context with Reducer
+
+```tsx
+// contexts/UserContext.tsx
+import { createContext, useReducer, FC, ReactNode } from "react";
+import { userReducer } from "../reducers/userReducer";
+import { UserState, UserAction, User } from "../types/userTypes";
+
+interface UserContextType {
+  state: UserState;
+  dispatch: React.Dispatch<UserAction>;
+}
+
+const initialState: UserState = {
+  user: null,
+  isLoading: false,
+  error: null,
+};
+
+export const UserContext = createContext<UserContextType>({
+  state: initialState,
+  dispatch: () => null,
+});
+
+export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
+  const [state, dispatch] = useReducer(userReducer, initialState);
+
+  return <UserContext.Provider value={{ state, dispatch }}>{children}</UserContext.Provider>;
+};
+```
+
+## 4. Using the Enhanced Context
+
+```tsx
+// components/LoginComponent.tsx
+import { FC, useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
+import { User } from "../types/userTypes";
+
+const LoginComponent: FC = () => {
+  const { state, dispatch } = useContext(UserContext);
+
+  const handleLogin = async () => {
+    dispatch({ type: "LOGIN_START" });
+
+    try {
+      // Simulate API call
+      const userData: User = {
+        name: "John Doe",
+        role: "admin",
+      };
+
+      dispatch({ type: "LOGIN_SUCCESS", payload: userData });
+    } catch (error) {
+      dispatch({
+        type: "LOGIN_ERROR",
+        payload: "Login failed. Please try again.",
+      });
+    }
+  };
+
   return (
-    <LanguageContext.Provider value={{ language, setLanguage }}>
-      {children}
-    </LanguageContext.Provider>
+    <div>
+      {state.isLoading ? (
+        <p>Loading...</p>
+      ) : state.error ? (
+        <p>Error: {state.error}</p>
+      ) : state.user ? (
+        <div>
+          <h1>Welcome, {state.user.name}!</h1>
+          <p>Role: {state.user.role}</p>
+          <button onClick={() => dispatch({ type: "LOGOUT" })}>Logout</button>
+        </div>
+      ) : (
+        <button onClick={handleLogin}>Login</button>
+      )}
+    </div>
   );
 };
+
+export default LoginComponent;
+```
+
+## UserProvider in your application
+
+```tsx
+import { FC } from "react";
+import { UserProvider } from "./contexts/UserContext";
+import LoginComponent from "./components/LoginComponent";
+import Dashboard from "./components/Dashboard";
+
+const App: FC = () => {
+  return (
+    <UserProvider>
+      {/* All components inside UserProvider can access the user context */}
+      <div className='app'>
+        <LoginComponent />
+        <Dashboard />
+        {/* Other components that need access to user state */}
+      </div>
+    </UserProvider>
+  );
+};
+
+export default App;
+```
+
+And here's how you might use it in a nested component:
+
+```tsx
+import { FC, useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
+
+const Dashboard: FC = () => {
+  const { state } = useContext(UserContext);
+
+  if (!state.user) {
+    return <div>Please log in to view the dashboard</div>;
+  }
+
+  return (
+    <div className='dashboard'>
+      <h2>Dashboard</h2>
+      <p>Welcome back, {state.user.name}</p>
+      <p>Your role is: {state.user.role}</p>
+      {/* Other dashboard content */}
+    </div>
+  );
+};
+
+export default Dashboard;
 ```
