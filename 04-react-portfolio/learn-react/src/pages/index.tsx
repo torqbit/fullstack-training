@@ -19,7 +19,7 @@ export type UserProfile = {
 const HomePage =()=>{
     const [userProfile, setUserProfile]= useState<UserProfile>({name: '', img:'', description:'', articles: []});
     const [loggedInUser, setLoggedInUser] = useState("")
-    const userinformation = localStorage.getItem(`${loggedInUser}-articles`) || '{}'
+    
     
     
     
@@ -35,7 +35,10 @@ const HomePage =()=>{
         
         if (userEmail) {
             setLoggedInUser(userEmail)
-            setUserProfile({...userProfile, articles: JSON.parse(userinformation)})
+            const userInformation = JSON.parse(localStorage.getItem(`${userEmail}-articles`) || '[]');
+            setUserProfile({...userProfile, articles : userInformation} )
+
+            
         }
         else{
             router.push('/signup')
@@ -47,10 +50,24 @@ const HomePage =()=>{
         getRememberedUser();
     }, []);
 
+    // useEffect(() => {
+    //     if (loggedInUser) {
+    //         const userInformation = JSON.parse(localStorage.getItem(`${loggedInUser}-articles`) || '[]');
+    //         setUserProfile({...userProfile,
+    //             articles: userInformation || [],
+    //         });
+    //     }
+    //     else{
+    //         router.push('/signup')
+    //     }
+    // }, [loggedInUser])
+
+
     return(
         <div>
-            <About name={userProfile.name} description={userProfile.description} img={userProfile.img}/>
+        {userProfile && (
             <Articles  articles={userProfile.articles} />
+        )}
         </div>
     )
 };

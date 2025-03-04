@@ -18,7 +18,7 @@ export const Articles: FC<{articles: ArticleProps[]}> = ({articles}) => {
         <p>Articles</p>
         <hr />
         <div className={styles.grid}>
-        {articles.map(article => 
+          {articles.map(article => (
             <ArticleCard
               blogImg={article.blogImg} 
               dateOfPublish={article.dateOfPublish} 
@@ -28,7 +28,7 @@ export const Articles: FC<{articles: ArticleProps[]}> = ({articles}) => {
               readLink={article.readLink} 
               linkLogo={article.linkLogo}
             />
-        )}
+          ))}
         </div>
     </section>
     )
