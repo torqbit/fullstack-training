@@ -1,21 +1,20 @@
 import styles from '@/styles/Talks.module.css'
 import {FC} from "react";
 
-type TalkProps ={
-    title: string;
-    talk: {blogImg: string;
-        language:string;
-        title:string; 
-        description:string}[];
-    }
+export type TalkProps ={
+    blogImg: string;
+    language:string;
+    title:string; 
+    description:string;
+}
 
-export const Talks : FC<TalkProps>=({title, talk}) =>{
+export const Talks : FC<{talks:TalkProps[]}>=({talks}) =>{
     return(
     <section id="4" className={styles.talks}>
-        <p>{title}</p>
+        <p>Talks</p>
         <hr />
         <div className={styles.talks__topic}>
-        {talk.map(talk=> 
+        {talks.map(talk=> 
             <TalkCard 
             blogImg={talk.blogImg}
             language={talk.language}

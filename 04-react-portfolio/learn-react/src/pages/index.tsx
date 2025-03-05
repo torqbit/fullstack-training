@@ -7,6 +7,8 @@ import App from "./Main";
 import articleList from  './components/Articles/ArticleStore.js'
 import { ArticleProps } from "./components/Articles/Article";
 import { Articles } from "./components/Articles/Article";
+import AppProvider from "@/components/useContext/AppProvider";
+import Portfolio from "@/components/useContext/Portfolio";
 
 export type UserProfile = {
     img: string;
@@ -64,11 +66,9 @@ const HomePage =()=>{
 
 
     return(
-        <div>
-        {userProfile && (
-            <Articles  articles={userProfile.articles} />
-        )}
-        </div>
+       <AppProvider>
+        <Portfolio/>
+       </AppProvider>
     )
 };
 export default HomePage

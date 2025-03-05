@@ -13,6 +13,7 @@ export type ArticleProps = {
 }
 
 export const Articles: FC<{articles: ArticleProps[]}> = ({articles}) => {
+  
     return(
     <section id="2" className={styles.article}>
         <p>Articles</p>

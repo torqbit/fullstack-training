@@ -1,18 +1,17 @@
 import styles from '@/styles/Projects.module.css'
 import {FC} from "react";
 
-type ProjectProps ={
-  title: string;
-  projects: {logo:string;
-    title:string;
-    description:string;
-    link:string;
-    arrow:string;}[];
+export type ProjectProps ={
+    logo:string,
+    title:string,
+    description:string,
+    link:string,
+    arrow:string;
 }
-export const Projects: FC<ProjectProps>= ({title, projects}) =>{
+export const Projects: FC<{projects : ProjectProps[]}>= ({projects}) =>{
     return(
     <section id="3" className={styles.project}>
-        <p>{title}</p>
+        <p>Projects</p>
         <hr />
         <div className={styles.project__container}>
         {projects.map(project => 

@@ -4,14 +4,14 @@ import {FC} from "react";
 type NavProps ={
   firstName: string;
   lastName: string;
-  onClickHandler: () => void;
+  //onClickHandler: () => void;
   links: string[];
   btnlogo : string;
   content: string;
 }
 
-export const Nav : FC<NavProps> = ({firstName, lastName , onClickHandler, links, btnlogo, content}) => {
-  return <nav className={`${styles.head} ${styles.nav}`} onClick={onClickHandler}>
+export const Nav : FC<NavProps> = ({firstName, lastName , links, btnlogo, content}) => {
+  return <nav className={`${styles.head} ${styles.nav}`}>
             <FullName firstname={firstName} lastname={lastName} />
             <NavLinks links={links} />
             <Contact logo={btnlogo} content={content} />

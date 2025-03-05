@@ -135,5 +135,6 @@ const ArticlePage = () => {
         <button type="button" onClick={(e: any) => handleArticleSubmit() }>Submit</button>
       </form>
     )
-};
+}
+}
 export default ArticlePage
