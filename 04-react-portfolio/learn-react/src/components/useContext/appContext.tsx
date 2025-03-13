@@ -1,16 +1,10 @@
-import { ArticleProps } from "@/pages/components/Articles/Article";
-import { ProjectProps} from "@/pages/components/Projects/Project";
-import { TalkProps } from "@/pages/components/Talks/Talk";
 import { createContext } from "react";
+import { AboutProps } from "../PortfolioEditor/About/aboutform";
+import { FormAction } from "../PortfolioEditor/About/formstate";
+import { initialState } from "../PortfolioEditor/About/formstate";
 
-type AppContextType ={
-    name:string | null,
-    contact: number | null,
-    profileImg: string | null,
-    title: string | null,
-    description : string | null,
-    article: ArticleProps[],
-    project: ProjectProps[],
-    talk : TalkProps[];
+type FormContextType ={
+    state: AboutProps,
+    dispatch: React.Dispatch<FormAction>
 }
- export const AppContext = createContext<AppContextType>({contact: null, name: null, profileImg: null, title:null, description:null, article: [], project:[], talk:[]})
+ export const AppContext = createContext<FormContextType>({state: initialState, dispatch:()=>{}})

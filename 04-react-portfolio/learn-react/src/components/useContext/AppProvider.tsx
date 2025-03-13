@@ -1,11 +1,17 @@
-import { FC, ReactElement, useState } from "react"
+import { FC, ReactElement, useState , useReducer} from "react"
 import { AppContext } from "./appContext"
+import { portfolio } from "@/site"
+import { Aboutform} from "../PortfolioEditor/About/aboutform"
+import { initialState, formReducer, FormAction } from "../PortfolioEditor/About/formstate"
+
 
 const AppProvider: FC<{children: ReactElement}>=({children})=>{
 
-    const [userdetail, setuserdetail] = useState()
-
-    return <AppContext.Provider value={{name:'Aisha', contact: 984367952, profileImg:'', description:'I am learning full-stack', title:'learning',talk:[],project:[] ,article:[]}}>
+    
+    const [state, dispatch] = useReducer(formReducer, initialState)
+    
+    
+    return <AppContext.Provider value={{state: state, dispatch: dispatch}}>
             {children}
            </AppContext.Provider>
 }

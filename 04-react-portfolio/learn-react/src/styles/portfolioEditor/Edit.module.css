@@ -1,0 +1,12 @@
+.edit {
+    display: flex;
+    flex-direction: row;
+}
+.portfolio{
+    margin-left: 100px;
+    margin-right: 200px;
+}
+.portfolioEditor{
+    flex:1;
+    background-color: var(--card-bg);
+}

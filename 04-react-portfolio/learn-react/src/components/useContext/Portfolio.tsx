@@ -1,22 +1,20 @@
-import { About } from "@/pages/components/About/About"
-import { Nav} from "@/pages/components/Nav/Nav"
-import { Articles} from "@/pages/components/Articles/Article"
-import { Projects } from "@/pages/components/Projects/Project"
-import { Talks } from "@/pages/components/Talks/Talk"
+import { About } from "@/components/PortfolioEditor/About/About"
+import { Nav} from "@/components/PortfolioEditor/Nav/Nav"
+import { Articles} from "@/components/PortfolioEditor/Articles/Article"
+import { Projects } from "@/components/PortfolioEditor/Projects/Project"
+import { Talks } from "@/components/PortfolioEditor/Talks/Talk"
 import { useContext } from "react"
 import { AppContext } from "./appContext"
 
 const Portfolio=() =>{
-    const {name, description, article, project, talk} = useContext(AppContext)
+    const {state} = useContext(AppContext)
     return(
         <div>
-            {name != null &&(
-            <Nav firstName= {name} lastName="Agarwal" links={['About', 'Article', 'Project', 'Talk']} btnlogo="/images/phone.svg" content="Contact Me"/>)}
-            {name != null &&(
-            <About name={name} img="/images/uifaces-popular-image.jpg" description={description} />)}
-            <Articles articles={article}/>
+            <Nav firstName={state.firstname} lastName={state.lastname} links={['About','Articles','Projects','Talks']} btnlogo="/images/phone.svg" content="Let's Talk" />
+            <About  img={state.img} name={state.name} description={state.description}/>
+            {/* <Articles articles={article} />
             <Projects projects={project}/>
-            <Talks talks={talk}/>
+            <Talks talks={talk}/> */}
         </div>
     )
 }
