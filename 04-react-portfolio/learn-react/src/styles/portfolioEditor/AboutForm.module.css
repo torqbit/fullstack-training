@@ -1,0 +1,37 @@
+.form>p{
+    color:white;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.form> form{
+    display:flex;
+    flex-direction: column;
+    gap:20px;
+}
+.information{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+}
+.information> label{
+    font-size: small;
+    color: rgba(189, 212, 207, 0.87);
+}
+.information> input{
+    background-color: black;
+    border: none;
+    padding: 10px 0 10px 10px;
+    border-radius: 3px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+.information>input>value{
+    color:white
+}
+.information> textarea{
+    overflow: hidden;
+    background-color: black;
+    border: none;
+    padding: 10px 0 10px 10px;
+    border-radius: 3px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);;
+}
