@@ -1,39 +1,40 @@
+import { AboutProps } from "./aboutform";
+import { appInitialState, AppState } from "@/components/useContext/appContext";
+import { ArticleProps } from "../Articles/Article";
+
 type formType={
-  firstname:string,
-  lastname:string ,
-  contact: number,
-  img: string,
-  name: string,
-  description : string 
+   about: AboutProps;
+   articles: ArticleProps[]
 }
-export const initialState:formType={
-  firstname:"BELLA",
-  lastname:"DOE",
-  contact: 9857263235,
-  img: "images/uifaces-popular-image.jpg",
-  name: "Bella",
-  description : "I help Startsups through fast-paced full stack software development"
-}
-export type FormAction = INPUT_CHANGE | RESET_FORM;
+
+export type FormAction = INPUT_CHANGE | RESET_FORM | SAVE_ARTICLE;
 
 type INPUT_CHANGE = {
     type: "INPUT_CHANGE";
-    payload: string;
+    payload: AboutProps;
 }
 type RESET_FORM = {
     type: "RESET_FORM";
 }
-
-export const formReducer = (state: formType, action: FormAction):formType => {
+type SAVE_ARTICLE={
+  type:"SAVE_ARTICLE";
+  payload:ArticleProps;
+}
+export const formReducer = (state: AppState, action: FormAction):AppState => {
     switch (action.type) {
       case "INPUT_CHANGE":
         return {
           ...state,
-          name: action.payload
-          
+          ...action.payload
         };
       case "RESET_FORM":
-        return initialState;
+        return appInitialState;
+      
+      case "SAVE_ARTICLE":
+        return{
+          ...state,
+          articles:[...state.articles, action.payload]
+        }
       
        default:
         return state;

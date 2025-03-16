@@ -13,7 +13,7 @@ const PortfolioEditor = () => {
     { 
         icon: "/images/about.svg", 
         title: "About", 
-        form: <Aboutform firstname={state.firstname}  lastname={state.lastname} name={state.name} img={state.img} contact={state.contact} description={state.description}/>
+        form: <Aboutform  firstname={state.about.firstname}  lastname={state.about.lastname} name={state.about.name} img={state.about.img} contact={state.about.contact} description={state.about.description}/>
     },
     {
         icon: "/images/article.svg", 

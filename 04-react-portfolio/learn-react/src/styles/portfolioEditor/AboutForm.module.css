@@ -24,7 +24,7 @@
     border-radius: 3px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
 }
-.information>input>value{
+.information>input{
     color:white
 }
 .information> textarea{
@@ -34,4 +34,7 @@
     padding: 10px 0 10px 10px;
     border-radius: 3px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);;
+}
+.information>textarea{
+    color:white;
 }

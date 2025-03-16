@@ -3,7 +3,6 @@ import {FC} from "react";
 import articleList from './ArticleStore';
 
 export type ArticleProps = {
-    id:number;
     blogImg: string;
     dateOfPublish: string;
     category: string;
@@ -23,7 +22,6 @@ export const Articles: FC<{articles: ArticleProps[]}> = ({articles}) => {
         {articles && articles.length > 0 ? (
           articles.map((article) => (
             <ArticleCard
-              key={article.id} // ✅ Ensure unique key
               blogImg={article.blogImg}
               dateOfPublish={article.dateOfPublish}
               category={article.category}

@@ -2,21 +2,28 @@ import { FC, useEffect, useState } from "react"
 import styles from "@/styles/portfolioEditor/AboutForm.module.css"
 import { useContext } from "react"
 import { AppContext } from "@/components/useContext/appContext"
-import { initialState } from "./formstate"
-
 
 export type AboutProps = {
     firstname:string,
     lastname:string ,
+    name: string,
     contact: number,
     img: string,
-    name: string,
     description : string 
 }
-export const Aboutform:FC<AboutProps>=({firstname,lastname,contact,img,name,description})=>{
+export const aboutInitialState:AboutProps={
+  firstname:"BELLA",
+  lastname:"DOE",
+  contact: 9857263235,
+  img: "images/uifaces-popular-image.jpg",
+  name: "Bella",
+  description : "I help Startsups through fast-paced full stack software development"
+}
+
+export const Aboutform:FC<AboutProps>=({firstname,lastname,contact,img,description,name})=>{
 
   const { state, dispatch} = useContext(AppContext);
-  const [aboutDetails, setAboutDetails] = useState<AboutProps>(state);
+  const [aboutDetails, setAboutDetails] = useState<AboutProps>(state.about);
 
   useEffect(() => {
     dispatch({ type: "INPUT_CHANGE", payload: aboutDetails});
@@ -33,7 +40,7 @@ export const Aboutform:FC<AboutProps>=({firstname,lastname,contact,img,name,desc
           <input
             type="text"
             name="firstname"
-            value={state.firstname}
+            value={aboutDetails.firstname}
             onChange={(e:any)=> setAboutDetails({...aboutDetails, firstname:e.currentTarget.value })}
             required
           />
@@ -43,8 +50,18 @@ export const Aboutform:FC<AboutProps>=({firstname,lastname,contact,img,name,desc
           <input
             type="text"
             name="lastname"
-            value={state.lastname}
+            value={aboutDetails.lastname}
             onChange={(e:any)=> setAboutDetails({...aboutDetails, lastname:e.currentTarget.value })}
+            required
+          />
+        </div>
+        <div className={styles.information}>
+          <label>Name</label>
+          <input
+            type="text"
+            name="name"
+            value={aboutDetails.name}
+            onChange={(e:any)=> setAboutDetails({...aboutDetails, name:e.currentTarget.value })}
             required
           />
         </div>
@@ -53,7 +70,7 @@ export const Aboutform:FC<AboutProps>=({firstname,lastname,contact,img,name,desc
           <input
             type="text"
             name="img"
-            value={state.img}
+            value={aboutDetails.img}
             onChange={(e:any)=> setAboutDetails({...aboutDetails, img:e.currentTarget.value })}
             required
           />
@@ -62,7 +79,7 @@ export const Aboutform:FC<AboutProps>=({firstname,lastname,contact,img,name,desc
           <label>Description</label>
           <textarea
             name="description"
-            value={state.description}
+            value={aboutDetails.description}
             onChange={(e:any)=> setAboutDetails({...aboutDetails, description:e.currentTarget.value })}
             required
           />
@@ -72,7 +89,7 @@ export const Aboutform:FC<AboutProps>=({firstname,lastname,contact,img,name,desc
           <input
             type="number"
             name="contact"
-            value={state.contact}
+            value={aboutDetails.contact}
             onChange={(e:any)=> setAboutDetails({...aboutDetails, contact:e.currentTarget.value })}
             required
           />

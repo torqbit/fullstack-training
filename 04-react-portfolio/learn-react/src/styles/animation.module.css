@@ -1,0 +1,68 @@
+.name> p{
+    color:white;
+    font-size: larger;
+    animation: drift 2s ease-in infinite alternate; 
+}
+.common{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    justify-content: center;
+    align-items: center;
+}
+.first{
+    background-color:antiquewhite;
+    height: 10px;
+    width:150px;
+
+}
+.second{
+    background-color: antiquewhite;
+    height: 10px;
+    width:150px;
+}
+.third{
+    background-color:antiquewhite;
+    height: 10px;
+    width:150px;
+}
+@keyframes drift {
+    0%{
+        margin-left: 0;
+    }
+    100%{
+        margin-left:200px;
+    }
+}
+@keyframes first {
+    0%{
+        bottom:0;
+        left:0;
+    }
+    25%{
+        bottom:100vh;
+        left:33vw;
+    }
+    50%{
+        bottom:0;
+        left:50vw
+    }
+    75%{
+        bottom:100vh;
+        left:66vw
+    }
+    100%{
+        bottom:0;
+        left:100vw
+    }
+    
+}
+@keyframes first {
+    0%{
+        margin-top: 0;
+    }
+    50%{
+        margin-top: 10px;
+    }
+    
+}
