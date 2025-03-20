@@ -22,6 +22,19 @@ function greet(name: string, greeting: string) {
 setTimeout(greet, 1000, "John", "Hello");
 ```
 
+### 2. setInterval() - Execute Repeatedly at Interval
+
+Executes a function repeatedly at a specified interval.
+
+```typescript
+// Basic setInterval
+const intervalId = setInterval(() => {
+  console.log("Executing every 3 seconds");
+}, 3000);
+// Clear interval
+clearInterval(intervalId);
+```
+
 ## Practice Assignments: setTimeout in React/Next.js 🎯
 
 ### Assignment 1: Auto-Dismiss Notification
@@ -95,5 +108,77 @@ interface QuizQuestionProps {
 // - Shows remaining time
 // - Auto-submits on timeout
 // - Cancels timer if answered early
+// - Cleans up on unmount
+```
+
+## Practice Assignments: setInterval in React/Next.js 🔄
+
+### Assignment 1: Live Clock Display
+
+Create a clock component that updates every second.
+
+```typescript
+interface ClockProps {
+  format?: "12h" | "24h";
+  showSeconds?: boolean;
+}
+
+// TODO: Create Clock component that:
+// - Shows current time
+// - Updates every second
+// - Supports different time formats
+// - Cleans up interval on unmount
+```
+
+### Assignment 2: Progress Bar Animation
+
+Create an animated progress bar that updates smoothly.
+
+```typescript
+interface ProgressBarProps {
+  duration: number; // milliseconds
+  onComplete: () => void;
+  color?: string;
+}
+
+// TODO: Create ProgressBar component that:
+// - Animates progress smoothly
+// - Updates progress every 50ms
+// - Triggers completion callback
+// - Supports custom styling
+```
+
+### Assignment 3: Auto-Save Draft
+
+Create a component that automatically saves form data periodically.
+
+```typescript
+interface AutoSaveProps {
+  data: any;
+  saveInterval?: number; // milliseconds
+  onSave: (data: any) => Promise<void>;
+}
+
+// TODO: Create AutoSave component that:
+// - Saves data periodically
+// - Shows last saved timestamp
+// - Handles save errors
+// - Stops auto-save when unmounted
+```
+
+### Assignment 4: Typing Indicator
+
+Create a component that shows "User is typing..." with dots animation.
+
+```typescript
+interface TypingIndicatorProps {
+  isTyping: boolean;
+  username: string;
+}
+
+// TODO: Create TypingIndicator that:
+// - Shows animated dots (...)
+// - Updates every 500ms
+// - Shows/hides based on typing status
 // - Cleans up on unmount
 ```
