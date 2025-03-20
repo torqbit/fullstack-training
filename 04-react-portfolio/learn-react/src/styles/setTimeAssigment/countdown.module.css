@@ -1,0 +1,22 @@
+.countdownButton {
+    background-color: #007bff; /* Blue button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    outline: none;
+  }
+  
+  .countdownButton:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+  }
+  
+  .countdownButton:disabled {
+    background-color: #ccc; /* Gray out when disabled */
+    cursor: not-allowed;
+    transform: none;
+  }

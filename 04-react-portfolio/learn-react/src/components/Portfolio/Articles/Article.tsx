@@ -8,8 +8,7 @@ export type ArticleProps = {
     category: string;
     title: string;
     description: string;
-    readLink: string;
-    linkLogo: string;
+    articleLink: string
 }
 
 export const Articles: FC<{articles: ArticleProps[]}> = ({articles}) => {
@@ -26,8 +25,7 @@ export const Articles: FC<{articles: ArticleProps[]}> = ({articles}) => {
               category={article.category} 
               title={article.title} 
               description={article.description} 
-              readLink={article.readLink} 
-              linkLogo={article.linkLogo}
+              articleLink={article.articleLink} 
             />
           ))}
         </div>
@@ -35,7 +33,7 @@ export const Articles: FC<{articles: ArticleProps[]}> = ({articles}) => {
     )
 }
     
-const ArticleCard: FC<{blogImg: string, dateOfPublish:string, category:string, title:string, description:string, readLink:string, linkLogo:string}>=({blogImg, dateOfPublish, category, title, description, readLink, linkLogo}) => (
+const ArticleCard: FC<{blogImg: string, dateOfPublish:string, category:string, title:string, description:string, articleLink:string}>=({blogImg, dateOfPublish, category, title, description, articleLink}) => (
     <div className= {styles.blog}>
         <div className={styles.image}>
           <img src={blogImg}/>
@@ -46,10 +44,13 @@ const ArticleCard: FC<{blogImg: string, dateOfPublish:string, category:string, t
         </div>
         <p>{title}</p>
         <p>{description}</p>
-        <a href="#" className={styles.article__link}>
-          <p>{readLink}</p>
+        <a href={articleLink} className={styles.article__link}>
+          <p>Read post</p>
           <i>
-            <svg>{linkLogo}</svg>
+            <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 4.5L16.5 12L9 19.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
           </i>
         </a>
       </div>

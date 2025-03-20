@@ -2,14 +2,21 @@ import { FC, useEffect, useState } from "react"
 import styles from "@/styles/portfolioEditor/AboutForm.module.css"
 import { useContext } from "react"
 import { AppContext } from "@/components/useContext/appContext"
-import { ArticleProps } from "@/components/Portfolio/Articles/Article"
+import { ArticleProps } from "./Article"
 
 
-
+// const ArticleInitialState:ArticleProps={
+//   blogImg: "",
+//   dateOfPublish: "",
+//   category: "",
+//   title: "",
+//   description: "",
+//   articleLink: ""
+// }
 export const Articleform:FC=()=>{
 
   const { state, dispatch} = useContext(AppContext);
-  const [articleDetails, setArticleDetails] = useState<ArticleProps>();
+  const [articleDetails, setArticleDetails] = useState<ArticleProps>()
 
   useEffect(() => {
     articleDetails && dispatch({ type: "SAVE_ARTICLE", payload: articleDetails});
@@ -27,27 +34,27 @@ export const Articleform:FC=()=>{
             type="text"
             name="blogImg"
             value={articleDetails?.blogImg}
-            onChange={(e:any)=> setArticleDetails({...aboutDetails, firstname:e.currentTarget.value })}
+            onChange={(e:any)=> setArticleDetails({...articleDetails ,blogImg: e.currentTarget.value })}
             required
           />
         </div>
         <div className={styles.information}>
-          <label>Last Name</label>
+          <label>Category</label>
           <input
             type="text"
-            name="lastname"
-            value={state.about.lastname}
-            onChange={(e:any)=> setAboutDetails({...aboutDetails, lastname:e.currentTarget.value })}
+            name="category"
+            value={articleDetails?.category}
+            onChange={(e:any)=> setArticleDetails({...articleDetails, category:e.currentTarget.value })}
             required
           />
         </div>
         <div className={styles.information}>
-          <label>Profile Image</label>
+          <label>Title</label>
           <input
             type="text"
-            name="img"
-            value={state.about.img}
-            onChange={(e:any)=> setAboutDetails({...aboutDetails, img:e.currentTarget.value })}
+            name="title"
+            value={articleDetails?.dateOfPublish}
+            onChange={(e:any)=> setArticleDetails({...articleDetails, title:e.currentTarget.value })}
             required
           />
         </div>
@@ -55,28 +62,30 @@ export const Articleform:FC=()=>{
           <label>Description</label>
           <textarea
             name="description"
-            value={state.about.description}
-            onChange={(e:any)=> setAboutDetails({...aboutDetails, description:e.currentTarget.value })}
+            value={articleDetails?.description}
+            onChange={(e:any)=> setArticleDetails({...articleDetails, description:e.currentTarget.value })}
             required
           />
         </div>
         <div className={styles.information}>
-          <label>Contact Details</label>
+          <label>Date of Publish</label>
           <input
-            type="number"
-            name="contact"
-            value={state.about.contact}
-            onChange={(e:any)=> setAboutDetails({...aboutDetails, contact:e.currentTarget.value })}
+            type="date"
+            name="dateofpublish"
+            value={articleDetails?.dateOfPublish}
+            onChange={(e:any)=> setArticleDetails({...articleDetails, dateOfPublish:e.currentTarget.value })}
             required
           />
         </div>
         <div className={styles.information}>
-          <label>Contact Type</label>
-          <select name="contactType">
-            <option value="phone">Phone</option>
-            <option value="email">Email</option>
-            <option value="whatsapp">WhatsApp</option>
-          </select>
+          <label>Link</label>
+          <input
+            type="text"
+            name="articleLink"
+            value={articleDetails?.articleLink}
+            onChange={(e:any)=> setArticleDetails({...articleDetails, articleLink:e.currentTarget.value })}
+            required
+          />
         </div>
       </form>
     </div>

@@ -15,8 +15,13 @@ const animation = () => {
             <div className={styles.third}>
 
             </div>
+         </div>
+         <div className={styles.curve}>
 
-        </div>
+         </div>
+         <div className={styles.curve__next}>
+
+         </div>
         
     </div>
   )

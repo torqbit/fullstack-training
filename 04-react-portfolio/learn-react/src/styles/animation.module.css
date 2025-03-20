@@ -14,17 +14,26 @@
     background-color:antiquewhite;
     height: 10px;
     width:150px;
+    animation: first 3s ease-in infinite;
 
 }
 .second{
     background-color: antiquewhite;
     height: 10px;
     width:150px;
+    animation: second 3s ease-in infinite;
 }
 .third{
     background-color:antiquewhite;
     height: 10px;
     width:150px;
+    animation: third 3s ease-in infinite;
+}
+.curve{
+    height: 40px;
+    width: 40px;
+    background-color: brown;
+    animation: curve 4s ease-in infinite
 }
 @keyframes drift {
     0%{
@@ -34,35 +43,55 @@
         margin-left:200px;
     }
 }
+
 @keyframes first {
     0%{
-        bottom:0;
-        left:0;
-    }
-    25%{
-        bottom:100vh;
-        left:33vw;
+        transform: translate(0px, 0px);
     }
     50%{
-        bottom:0;
-        left:50vw
+        transform: translate(0px, 15px);
     }
-    75%{
+    100%{
+        transform: translate(75px, 15px) rotate(45deg);
+        
+    }
+    
+
+}
+@keyframes second {
+    0%{
+        transform: translate(0px,0px);
+    }
+    100%{
+        transform: translate(50px) scale(0);
+        
+    }
+
+}
+@keyframes third {
+    0%{
+        transform: translate(0px, 0px);
+    }
+    50%{
+        transform: translate(0px, -15px);
+    }
+    100%{
+        transform: translate(75px, -15px) rotate(-45deg) ;
+    }
+
+}
+@keyframes curve{
+    0%{
+        bottom:0;
+        right:0;
+    }
+    50%{
         bottom:100vh;
-        left:66vw
+        right:50vw;
     }
     100%{
         bottom:0;
-        left:100vw
+        right:100vw
     }
-    
-}
-@keyframes first {
-    0%{
-        margin-top: 0;
-    }
-    50%{
-        margin-top: 10px;
-    }
-    
+
 }

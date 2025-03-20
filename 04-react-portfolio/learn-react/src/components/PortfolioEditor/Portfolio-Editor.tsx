@@ -18,7 +18,8 @@ const PortfolioEditor = () => {
     {
         icon: "/images/article.svg", 
         title: "Articles", 
-        form: <Articleform name='' blog='' handleBlogChange={(e:string)=>{}} handleNameChange={(e:string)=>{}}/>,
+        form: <Articleform 
+         blog='' handleBlogChange={(e:string)=>{}} handleNameChange={(e:string)=>{}}/>,
     },
     {
         icon: "/images/project.svg", 

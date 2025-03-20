@@ -18,22 +18,24 @@ type RESET_FORM = {
 }
 type SAVE_ARTICLE={
   type:"SAVE_ARTICLE";
-  payload:ArticleProps;
+  payload:{article:ArticleProps, index:number};
 }
 export const formReducer = (state: AppState, action: FormAction):AppState => {
     switch (action.type) {
       case "INPUT_CHANGE":
         return {
           ...state,
-          ...action.payload
+          about:{...state.about, ...action.payload}
         };
       case "RESET_FORM":
         return appInitialState;
       
       case "SAVE_ARTICLE":
+        const newArticlesArray = [...state.articles]
+        newArticlesArray[action.payload.index]= action.payload.article
         return{
           ...state,
-          articles:[...state.articles, action.payload]
+          articles:newArticlesArray 
         }
       
        default:

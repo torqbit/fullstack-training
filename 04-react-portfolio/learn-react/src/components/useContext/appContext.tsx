@@ -6,6 +6,7 @@ import { ArticleProps } from "../PortfolioEditor/Articles/Article";
 
 export type AppState = {
     about: AboutProps;
+    articleIndex: number;
     articles: ArticleProps[]
 }
 type FormContextType ={
@@ -15,6 +16,7 @@ type FormContextType ={
 
 export const appInitialState: AppState = {
     about: aboutInitialState,
+    articleIndex: 0,
     articles: []
 }
 
