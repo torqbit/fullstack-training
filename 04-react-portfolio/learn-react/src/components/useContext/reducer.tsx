@@ -57,7 +57,7 @@ export const appReducer = (state: AppState, action: UserAction): AppState => {
 
 type AppContextType = {
     state : AppState
-    dispatch: React.Dispatch<ActionType>
+    dispatch: React.Dispatch<UserAction>
 }
     
 export const AppContext = createContext<AppContextType>({state: initialAppState, dispatch: () => null}) 

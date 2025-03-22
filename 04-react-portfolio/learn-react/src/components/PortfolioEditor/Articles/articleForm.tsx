@@ -2,24 +2,26 @@ import { FC, useEffect, useState } from "react"
 import styles from "@/styles/portfolioEditor/AboutForm.module.css"
 import { useContext } from "react"
 import { AppContext } from "@/components/useContext/appContext"
-import { ArticleProps } from "./Article"
 
 
-// const ArticleInitialState:ArticleProps={
-//   blogImg: "",
-//   dateOfPublish: "",
-//   category: "",
-//   title: "",
-//   description: "",
-//   articleLink: ""
-// }
-export const Articleform:FC=()=>{
+
+type ArticleProps = {
+  blogImg?: string;
+  dateOfPublish?: string;
+  category?: string;
+  title?: string;
+  description?: string;
+  articleLink?: string;
+
+}
+
+export const Articleform:FC<{index: number}>=({index})=>{
 
   const { state, dispatch} = useContext(AppContext);
   const [articleDetails, setArticleDetails] = useState<ArticleProps>()
 
   useEffect(() => {
-    articleDetails && dispatch({ type: "SAVE_ARTICLE", payload: articleDetails});
+    articleDetails && dispatch({ type: "NEW_ARTICLE"});
   }, [articleDetails]);
 
   
@@ -33,8 +35,8 @@ export const Articleform:FC=()=>{
           <input
             type="text"
             name="blogImg"
-            value={articleDetails?.blogImg}
-            onChange={(e:any)=> setArticleDetails({...articleDetails ,blogImg: e.currentTarget.value })}
+            value={state.articles[state.articleIndex].blogImg}
+            onChange={(e:any)=> setArticleDetails({...articleDetails , blogImg: e.currentTarget.value })}
             required
           />
         </div>
@@ -43,7 +45,7 @@ export const Articleform:FC=()=>{
           <input
             type="text"
             name="category"
-            value={articleDetails?.category}
+            value={state.articles?.[state.articleIndex]?.category ?? ""}
             onChange={(e:any)=> setArticleDetails({...articleDetails, category:e.currentTarget.value })}
             required
           />
@@ -53,7 +55,7 @@ export const Articleform:FC=()=>{
           <input
             type="text"
             name="title"
-            value={articleDetails?.dateOfPublish}
+            value={state.articles?.[state.articleIndex]?.title ?? ""}
             onChange={(e:any)=> setArticleDetails({...articleDetails, title:e.currentTarget.value })}
             required
           />
@@ -62,7 +64,7 @@ export const Articleform:FC=()=>{
           <label>Description</label>
           <textarea
             name="description"
-            value={articleDetails?.description}
+            value={state.articles?.[state.articleIndex]?.description ?? ""}
             onChange={(e:any)=> setArticleDetails({...articleDetails, description:e.currentTarget.value })}
             required
           />
@@ -70,9 +72,9 @@ export const Articleform:FC=()=>{
         <div className={styles.information}>
           <label>Date of Publish</label>
           <input
-            type="date"
+            type="text"
             name="dateofpublish"
-            value={articleDetails?.dateOfPublish}
+            value={state.articles?.[state.articleIndex]?.dateOfPublish ?? ""}
             onChange={(e:any)=> setArticleDetails({...articleDetails, dateOfPublish:e.currentTarget.value })}
             required
           />
@@ -82,7 +84,7 @@ export const Articleform:FC=()=>{
           <input
             type="text"
             name="articleLink"
-            value={articleDetails?.articleLink}
+            value={state.articles?.[state.articleIndex]?.articleLink ?? ""}
             onChange={(e:any)=> setArticleDetails({...articleDetails, articleLink:e.currentTarget.value })}
             required
           />

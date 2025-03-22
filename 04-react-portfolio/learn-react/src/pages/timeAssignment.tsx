@@ -12,10 +12,12 @@ const timeAssignment = () => {
 
   return (
     <div className={styles.assignment}>
-      <Notification message='My first Assignment is finished'/>
-      {/* <SearchInput onSearch={()=>{}}/> */}
-      <CountdownButton text='click  Me' onComplete={handleCountdown}/>
-      <QuizQuestion question='First Prime Minister of India' options={['JawaharLal Nehru', 'Indira Gandhi', 'Lal bhadur']} timeLimit={10}/>
+      {/* <Notification message='My first Assignment is finished'/> */}
+      <SearchInput onSearch={(query: string)=>{ 
+            console.log(query);
+        }}/>
+      {/* <CountdownButton text='click  Me' onComplete={handleCountdown}/>
+      <QuizQuestion question='First Prime Minister of India' options={['JawaharLal Nehru', 'Indira Gandhi', 'Lal bhadur']} timeLimit={10}/> */}
     </div>
   )
 }

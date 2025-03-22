@@ -18,18 +18,17 @@ const PortfolioEditor = () => {
     {
         icon: "/images/article.svg", 
         title: "Articles", 
-        form: <Articleform 
-         blog='' handleBlogChange={(e:string)=>{}} handleNameChange={(e:string)=>{}}/>,
+        form: <Articleform index={state.articleIndex}/>
     },
     {
         icon: "/images/project.svg", 
         title: "Projects", 
-        form: <Aboutform firstname={state.firstname}  lastname={state.lastname} name={state.name} img={state.img} contact={state.contact} description={state.description}/>,
+        form: <Articleform index={state.articleIndex}/>,
     },
     {
         icon: "/images/talk.svg", 
         title: "Talks", 
-        form: <Aboutform firstname={state.firstname}  lastname={state.lastname} name={state.name} img={state.img} contact={state.contact} description={state.description} />,
+        form: <Articleform index={state.articleIndex}/>,
     }
     
 ];
