@@ -121,3 +121,66 @@ interface RandomConfig {
 // - Generates number after specified delay
 // - Validates input range
 ```
+
+### Assignment 3: Basic Data Fetcher
+
+Create a function to fetch and type data from an API.
+
+```typescript
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+// TODO: Implement fetchUsers that:
+// - Fetches users from 'https://jsonplaceholder.typicode.com/users'
+// - Returns Promise<User[]>
+// - Handles network errors
+// - Validates response data
+```
+
+### Assignment 4: Parallel Posts Fetcher
+
+Create a function to fetch multiple posts simultaneously.
+
+```typescript
+interface Post {
+  id: number;
+  title: string;
+  body: string;
+  userId: number;
+}
+
+// TODO: Implement fetchUserPosts that:
+// - Takes array of userIds
+// - Fetches posts for each user in parallel
+// - Returns Promise<Post[]>
+// - Combines results in single array
+```
+
+### Assignment 5: Comments Fetcher with Timeout
+
+Create a function to fetch comments with timeout protection.
+
+```typescript
+interface Comment {
+  id: number;
+  postId: number;
+  name: string;
+  email: string;
+  body: string;
+}
+
+interface FetchConfig {
+  postId: number;
+  timeout?: number;
+  maxComments?: number;
+}
+
+// TODO: Implement fetchPostComments that:
+// - Takes FetchConfig as parameter
+// - Returns Promise<Comment[]>
+// - Implements timeout
+// - Limits number of comments
+```
