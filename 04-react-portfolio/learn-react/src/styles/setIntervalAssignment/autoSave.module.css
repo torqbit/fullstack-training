@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+    flex: row;
+    justify-content: space-around;
+    width: 400px;
+    border: 2px solid rgb(222, 21, 21);
+    box-shadow: 0px 4px 10px rgba(135, 135, 163, 0.5);
+}
+.container>p{
+    font-size: large;
+}

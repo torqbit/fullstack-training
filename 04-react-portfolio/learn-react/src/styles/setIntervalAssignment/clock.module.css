@@ -1,0 +1,41 @@
+.clockContainer{
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 100px;
+    background: linear-gradient(to left,  rgb(17, 17, 17), rgb(148, 144, 144));
+    padding:10px;
+    border-radius: 15px ;
+    margin-top: 20px;
+
+
+}
+
+.clock{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:400px;
+    height: 100px;
+    background: linear-gradient(210deg, grey 50%, black 50%); 
+    border-radius: 15px;
+
+}
+.time{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 340px;
+    height: 80px;
+    background-color: rgb(128, 171, 196);
+    border-radius: 15px;
+    opacity: 0.5;
+
+}
+.time>p{
+    margin:0;
+    font-size: 90px;
+    text-align:center;
+    color: rgba(5, 146, 247, 0.993);
+    font-weight: bolder;
+}

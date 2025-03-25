@@ -1,0 +1,21 @@
+.container{
+    display:flex;
+    flex-direction: column;
+    background-color: rgb(207, 204, 204);
+    width:400px;
+    height:180px;
+    padding: 0 50px;
+    border-radius: 4px;
+}
+.progress{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+.progress>p{
+    margin:0;
+}
+.progressBar{
+    box-shadow: 0px 4px 10px rgba(0, 0, 255, 0.5);
+    border-radius: 10px;
+}

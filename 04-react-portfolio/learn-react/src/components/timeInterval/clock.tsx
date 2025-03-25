@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
+import styles from '@/styles/setIntervalAssignment/clock.module.css'
 
 
 interface ClockProps {
@@ -7,22 +8,32 @@ interface ClockProps {
     showSeconds?: boolean;
 }
 const LiveClock = () => {
-  const [time, setTime] = useState(new Date().toLocaleTimeString());
-  const date = new Date();
-    const showTime = date.getHours() 
-        + ':' + date.getMinutes() 
-        + ":" + date.getSeconds();
+  const [time, setTime] = useState("");
+  
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTime(showTime);
+        const date = new Date();
+        const showTime = date.getHours() 
+        + ':' + date.getMinutes() 
+        + ":" + date.getSeconds();
+    
+      setTime(showTime.toLowerCase());
     }, 1000);
 
     return () => clearInterval(interval);
   }, []);
 
   return(
-  <p>Current Time: {time}</p>
+    <div className={styles.clockContainer}>
+        <div className={styles.clock}>
+              <div className={styles.time}>
+                  <p>{time}</p>
+             </div>
+        </div>
+     </div>
+    
+  
   );
 };
 

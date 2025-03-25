@@ -1,41 +1,36 @@
 import React, { useState , useEffect , useRef, TimeHTMLAttributes } from "react";
+import styles from '@/styles/setTimeAssigment/search.module.css'
  
  interface SearchInputProps {
    onSearch: (query: string) => void;
    delay?: number;
  }
  
- const SearchInput: React.FC<SearchInputProps> = ({onSearch,delay = 500}) => {
-   const [query, setQuery] = useState("");
-   const timer = useRef<NodeJS.Timeout>()
+ export const SearchInput: React.FC<SearchInputProps> = ({onSearch, delay = 1000}) => {
+   const[query, setQuery]= useState<string>("")
+   const[typing, setTyping]=useState(false)
    useEffect(()=>{
-    console.log(query);
-    if (timer.current){
-      console.log('clearing the timer')
-      console.log(timer.current)
-      clearTimeout(timer.current)
-    }
-    else{
-      console.log('setting timeout')
-      timer.current = setTimeout(()=>{
-        console.log(`Logging`)
-        onSearch(query)
-      }, delay)
-    }
-    
-    return () => {
-      if(timer.current){
-        clearTimeout(timer.current)
+      if (query.length != 0){
+        setTyping(true)
       }
-    }
-   }, [query])
- 
+      const timeout = setTimeout(() => {
+        onSearch
+        setTyping(false);
+      }, delay);
+         
+      return () => clearTimeout(timeout)
+    },[query])
    
  
    return (
-     <div className='search-input'>
+    <div className={styles.content}>
+      <div className={styles.search}>
+       <img src='images/5680244.png'/>
        <input type='text' value={query} onChange={(e) => setQuery(e.currentTarget.value)} placeholder='Search...' aria-label='Search input' />
-     </div>
+       <img src='images/images.png'/>
+      </div>
+       {!typing && query && <p>your Query is being searched</p>}
+    </div>
    );
  };
  

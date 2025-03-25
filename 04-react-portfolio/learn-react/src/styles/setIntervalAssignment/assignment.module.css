@@ -1,0 +1,7 @@
+.assignment{
+    background-color: whitesmoke;
+    display:flex;
+    flex-direction: column;
+    gap: 100px;
+    align-items: center;
+}
