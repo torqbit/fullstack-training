@@ -1,17 +1,22 @@
 import React from 'react'
 import {useState,useEffect, FC} from 'react'
 
-interface User {
+interface Post {
     id: number;
-    name: string;
-    email: string;
-  }
-
+    title: string;
+    body: string;
+    userId: number;
+}
 export const BasicFetch: FC = () => {
-    const [users, setUsers] = useState<User[]>([]);
+    const [users, setUsers] = useState<Post[]>([]);
     const [error, setError] = useState<string | null>(null);
     useEffect(() => {
-      fetch("https://jsonplaceholder.typicode.com/users")
+      fetch("https://jsonplaceholder.typicode.com/users", {
+        method: "POST",
+        headers:{
+            'Content-Type': 'application/json',
+          },
+      })
       .then(response => {
         if(response.ok){
           response.status
